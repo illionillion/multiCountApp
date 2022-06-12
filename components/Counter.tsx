@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity } from "react-native";
 
 const Counter = () => {
 
@@ -17,7 +17,7 @@ const Counter = () => {
         <View style = {styles.counterContainer}>
             <View style = {styles.counterNameContainer}>
                 <View style  = {styles.counterName}>
-                    <TextInput placeholder = "名前"/>
+                    <TextInput style = {{}} placeholder = "名前"/>
                 </View>
             </View>
             <View style = {styles.counterMain}>
@@ -30,9 +30,15 @@ const Counter = () => {
                     <Text style = {{fontSize: 18, marginStart:8}}>個</Text>
                 </View>
                 <View style = {styles.buttonContainer}>
-                    <Button title = "+" onPress = {Plus}/>
-                    <Button title = "-" onPress = {Minus}/>
-                    <Button title = "削除" />
+                    <TouchableOpacity style = {styles.button} onPress = {Plus}>
+                        <Text style = {styles.buttonText}>+</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.button} onPress = {Minus}>
+                        <Text style = {styles.buttonText}>-</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style = {styles.button}>
+                        <Text style = {styles.buttonText}>削除</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -42,7 +48,7 @@ const Counter = () => {
 const styles = StyleSheet.create({
     counterContainer: {
       width: '90%',
-      height: '20%',
+      height: '15%',
       backgroundColor: '#6EF3FA',
       justifyContent: 'center',
       alignItems: 'center',
@@ -57,16 +63,17 @@ const styles = StyleSheet.create({
       flexDirection: "column"
     },
     counterNameContainer: {
-        width: '90%',
-        // height: '20%',
+        // width: '100%',
         flex: 1,
         marginTop: 10,
+        justifyContent: 'center',
+        // alignItems:"flex-start",
+        // textAlign:"left",
     },
     counterName: {
-        width: '40%',
-        // height: '20%',
+        width: 200,
+        // width: '40%',
         backgroundColor: '#ffffff',
-        justifyContent: 'center',
     },
     counterMain: {
         flex: 2,
@@ -91,8 +98,24 @@ const styles = StyleSheet.create({
     buttonContainer:{
         flex: 2,
         flexDirection:"row",
-        justifyContent:"center"
-        // textAlign:"center"
+        justifyContent:"center",
+        textAlign:"center",
+        alignItems:"center",
+        marginLeft: 18,
     },
+    button: {
+        justifyContent:"center",
+        textAlign:"center",
+        alignItems:"center",
+        borderRadius:15,
+        width: '30%',
+        height: '80%',
+        marginRight: 5,
+        backgroundColor: '#ffffff',
+    },
+    buttonText: {
+        color: 'blue',
+        fontSize: 28,
+    }
 });
 export default Counter
