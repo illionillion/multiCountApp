@@ -1,15 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import Counter from './components/Counter';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import { useState } from 'react';
 
 export default function App() {
+  const [num, setNum] = useState(1)
+  const [counter, setCounter] = useState([0])
+  const addCounter = () => {
+    if(num > 3)return
+    setNum(prev => prev + 1)
+    setCounter([...counter, num])
+    // console.log(num);
+    // console.log(counter);
+  }
   return (
     <View style={styles.container}>
       <Header/>
       <View style = {styles.mainContainer}>
-        <Counter/>
+        {/* <ScrollView style = {styles.scroll}> */}
+          {counter.map((e)=>(<Counter key={e} />))}
+        {/* </ScrollView> */}
       </View>
+      <Footer events = {{addCounter}}/>
     </View>
   );
 }
@@ -19,9 +32,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
+    flexDirection:'column',
   },
   mainContainer: {
-    height: '100%',
-    marginTop:5,
+    flex:6,
+    overflow:'scroll',
+    // flexDirection:'row',
+  },
+  scroll:{
+    // width:'100%',
+    flex:1
   }
 });
