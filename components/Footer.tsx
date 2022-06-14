@@ -2,12 +2,13 @@ import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 const Footer = ({events}:any):JSX.Element => {
     const add = events.addCounter
+    const removeAll = events.removeAllCounter
     return(
         <View style = {styles.footerContainer}>
             <TouchableOpacity onPress={add} style={styles.footerButton}>
                 <Text>作成</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.footerButton}>
+            <TouchableOpacity onPress={removeAll} style={styles.footerButton}>
                 <Text>リセット</Text>
             </TouchableOpacity>
         </View>

@@ -3,9 +3,16 @@ import { StyleSheet, View } from "react-native";
 import CounterName from "./CounterName";
 import CounterMain from "./CounterMain";
 
-const Counter = ():JSX.Element => {
-
+const Counter = ({props}:any):JSX.Element => {
+    console.log(props);
+    
+    const no = props.no
+    const c = props.c
     const [count, setCount] = useState(0)
+    // console.log(num);
+
+    const Remove = props.removeCounter
+    const Change = props.changeCount
 
     const Plus = () => {
         setCount(prevCount => prevCount + 1)
@@ -18,7 +25,7 @@ const Counter = ():JSX.Element => {
     return (
         <View style = {styles.counterContainer}>
             <CounterName/>
-            <CounterMain props={{count, Minus, Plus}}/>
+            <CounterMain props={{count, Minus, Plus, Remove, Change, no}}/>
         </View>
     )
 }

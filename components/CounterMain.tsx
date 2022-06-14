@@ -3,12 +3,11 @@ import CountNumber from "./CountNumber";
 import ButtonContainer from "./ButtonContainer";
 
 const CounterMain = ({props}:any):JSX.Element => {
-    const Minus = props.Minus
-    const Plus = props.Plus
+
     return(
         <View style = {styles.counterMain}>
             <CountNumber count = {props.count}/>
-            <ButtonContainer events = {{Minus, Plus}} />
+            <ButtonContainer events = {props} />
         </View>
     )
 }
