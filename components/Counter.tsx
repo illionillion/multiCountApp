@@ -24,7 +24,7 @@ const Counter = ({props}:any):JSX.Element => {
 
     return (
         <View style = {styles.counterContainer}>
-            <CounterName/>
+            <CounterName num = {no}/>
             <CounterMain props={{count, Minus, Plus, Remove, Change, no}}/>
         </View>
     )

@@ -1,10 +1,11 @@
-import { StyleSheet, View, TextInput, } from "react-native";
+import { StyleSheet, View, TextInput, Text } from "react-native";
 
-const CounterName = ():JSX.Element => {
+const CounterName = ({num}:any):JSX.Element => {
 
     return (
         <View style = {styles.counterNameContainer}>
             <View style  = {styles.counterName}>
+                <Text>{num}</Text>
                 <TextInput placeholder = "名前"/>
             </View>
         </View>
