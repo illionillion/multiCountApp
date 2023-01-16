@@ -1,22 +1,43 @@
 import { StyleSheet, View } from "react-native";
 import CountNumber from "./CountNumber";
 import ButtonContainer from "./ButtonContainer";
+import { countStateProps } from "../App";
+import { FC } from "react";
 
-const CounterMain = ({props}:any):JSX.Element => {
-
-    return(
-        <View style = {styles.counterMain}>
-            <CountNumber count = {props.count}/>
-            <ButtonContainer events = {props} />
-        </View>
-    )
+export interface CounterMainProps {
+  countState: countStateProps;
+  Minus: () => void;
+  Plus: () => void;
+  Remove: (num: number) => void;
+  Change: (num: number, count: number) => void;
 }
 
-const styles = StyleSheet.create({
-    counterMain: {
-        flex: 2,
-        flexDirection: "row",
-    },
-})
+const CounterMain: FC<CounterMainProps> = ({
+  countState,
+  Minus,
+  Plus,
+  Remove,
+  Change,
+}) => {
+  return (
+    <View style={styles.counterMain}>
+      <CountNumber count={countState.count} />
+      <ButtonContainer
+        countState={countState}
+        Plus={Plus}
+        Minus={Minus}
+        Change={Change}
+        Remove={Remove}
+      />
+    </View>
+  );
+};
 
-export default CounterMain
+const styles = StyleSheet.create({
+  counterMain: {
+    flex: 2,
+    flexDirection: "row",
+  },
+});
+
+export default CounterMain;

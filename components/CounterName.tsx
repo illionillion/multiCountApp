@@ -1,6 +1,10 @@
+import { FC } from "react";
 import { StyleSheet, View, TextInput, Text } from "react-native";
 
-const CounterName = ({num}:any):JSX.Element => {
+export interface CounterNameProps {
+    num: number
+}
+const CounterName:FC<CounterNameProps> = ({num}) => {
 
     return (
         <View style = {styles.counterNameContainer}>
