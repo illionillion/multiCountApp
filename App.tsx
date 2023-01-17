@@ -25,11 +25,8 @@ export default function App() {
     counterState,
   ]);
   const addCounter = () => {
-    // if(num > 3)return
     setNum((prev) => prev + 1);
     setCounterList([...counterList, { no: num, count: 0, name: "" }]);
-    // console.log(num);
-    // console.log(counter);
   };
   const removeAllCounter = () => {
     setNum(0);
@@ -37,7 +34,6 @@ export default function App() {
   };
   const removeCounter = (num: number) => {
     console.log(num);
-    // setNum((prev) => prev - 1);
     setCounterList(counterList.filter((count, index) => count.no !== num));
   };
   const changeCount = (num: number, count: number) => {
@@ -63,6 +59,12 @@ export default function App() {
 
     setCounterList(newCounter);
   };
+  const updateName = (name:string, no:number) => {
+    const newCounter = counterList.map((counter) =>
+    counter.no === no ? { no: counter.no, count: counter.count, name: name } : counter
+    );
+    setCounterList(newCounter);
+  }
   useEffect(()=>{
     console.log(counterList);
   },[counterList])
@@ -80,6 +82,7 @@ export default function App() {
               removeCounter={removeCounter}
               plusCount={plusCount}
               minusCount={minusCount}
+              updateName={updateName}
             />
           )}
         />
@@ -92,7 +95,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#191919",
     flexDirection: "column",
   },
   mainContainer: {

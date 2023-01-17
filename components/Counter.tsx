@@ -7,15 +7,17 @@ export interface CounterProps {
   countState: countStateProps;
   removeCounter: (num: number) => void;
   changeCount: (num: number, count: number) => void;
-  plusCount: (num:number) => void
-  minusCount: (num:number) => void
+  plusCount: (num: number) => void;
+  minusCount: (num: number) => void;
+  updateName: (name: string, num: number) => void;
 }
 const Counter: FC<CounterProps> = ({
   countState,
   changeCount,
   removeCounter,
   plusCount,
-  minusCount
+  minusCount,
+  updateName
 }) => {
   const no = countState.no;
   const name = countState.name;
@@ -25,16 +27,16 @@ const Counter: FC<CounterProps> = ({
   const Change = changeCount;
 
   const Plus = () => {
-    plusCount(no)
+    plusCount(no);
   };
   const Minus = () => {
     if (count === 0) return;
-    minusCount(no)
+    minusCount(no);
   };
 
   return (
     <View style={styles.counterContainer}>
-      <CounterName num={no} name={name} />
+      <CounterName num={no} name={name} updateName={updateName} />
       <CounterMain
         countState={countState}
         Minus={Minus}
