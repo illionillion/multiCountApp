@@ -8,31 +8,27 @@ export interface CounterProps {
   removeCounter: (num: number) => void;
   changeCount: (num: number, count: number) => void;
   plusCount: (num:number) => void
+  minusCount: (num:number) => void
 }
 const Counter: FC<CounterProps> = ({
   countState,
   changeCount,
   removeCounter,
-  plusCount
+  plusCount,
+  minusCount
 }) => {
   const no = countState.no;
-  const c = countState.count;
-  const [count, setCount] = useState(0);
-  // console.log(num);
-  countState.count = count
+  const count = countState.count;
 
   const Remove = removeCounter;
   const Change = changeCount;
 
   const Plus = () => {
-    console.log('PLUS');
-    
-    setCount((prevCount) => prevCount + 1);
-    // plusCount(no)
+    plusCount(no)
   };
   const Minus = () => {
     if (count === 0) return;
-    setCount((prevCount) => prevCount - 1);
+    minusCount(no)
   };
 
   return (

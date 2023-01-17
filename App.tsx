@@ -9,7 +9,7 @@ import {
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export interface countStateProps {
   no: number;
@@ -56,6 +56,17 @@ export default function App() {
 
     setCounterList(newCounter);
   };
+  const minusCount = (no: number) => {
+    const newCounter = counterList.map((counter) =>
+      counter.no === no ? { no: counter.no, count: counter.count - 1 } : counter
+    );
+    console.log(newCounter);
+
+    setCounterList(newCounter);
+  };
+  useEffect(()=>{
+    console.log(counterList);
+  },[counterList])
   return (
     <View style={styles.container}>
       <Header />
@@ -69,22 +80,10 @@ export default function App() {
               changeCount={changeCount}
               removeCounter={removeCounter}
               plusCount={plusCount}
+              minusCount={minusCount}
             />
           )}
         />
-        {/* {counterList.map((i, num) => {
-          console.log(i);
-          console.log(num);
-          return (
-            <Counter
-              key={num}
-              countState={i}
-              changeCount={changeCount}
-              removeCounter={removeCounter}
-              plusCount = {plusCount}
-            />
-          );
-        })} */}
       </View>
       <Footer addCounter={addCounter} removeAllCounter={removeAllCounter} />
     </View>
