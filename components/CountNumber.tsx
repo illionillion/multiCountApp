@@ -24,13 +24,16 @@ const styles = StyleSheet.create({
   countNumber: {
     width: "90%",
     height: "90%",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#191919",
+    borderColor: "#2ecc71",
+    borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
   },
   countNumberText: {
     fontSize: 24,
+    color: "#fff",
   },
   countText: {
     fontSize: 18,

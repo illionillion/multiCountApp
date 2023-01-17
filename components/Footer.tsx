@@ -14,10 +14,10 @@ const Footer: FC<FooterProps> = ({
   return (
     <View style={styles.footerContainer}>
       <TouchableOpacity onPress={add} style={styles.footerButton}>
-        <Text>作成</Text>
+        <Text style={styles.footerButtonText}>作成</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={removeAll} style={styles.footerButton}>
-        <Text>リセット</Text>
+        <Text style={styles.footerButtonText}>リセット</Text>
       </TouchableOpacity>
     </View>
   );
@@ -31,10 +31,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#6FE39F",
+    backgroundColor: "#191919",
     flexDirection: "row",
     paddingLeft: 5,
     paddingRight: 5,
+    borderTopWidth:1,
+    borderTopColor: "#3498db",
   },
   footerButton: {
     textAlign: "center",
@@ -42,13 +44,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "40%",
     height: "60%",
-    backgroundColor: "#6EF3FA",
+    backgroundColor: "#191919",
+    borderWidth: 1,
+    borderColor: "#3498db",
     marginTop: 0,
     marginBottom: 20,
     marginRight: 15,
     marginLeft: 15,
     borderRadius: 15,
   },
+  footerButtonText: {
+    color:"#fff",
+  }
 });
 
 export default Footer;

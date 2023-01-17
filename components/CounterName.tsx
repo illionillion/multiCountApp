@@ -7,13 +7,14 @@ export interface CounterNameProps {
   updateName: (name: string, num: number) => void;
 }
 const CounterName: FC<CounterNameProps> = ({ num, name, updateName }) => {
-
   return (
     <View style={styles.counterNameContainer}>
       <View style={styles.counterName}>
-        <Text>{num}</Text>
+        <Text style={styles.counterNumber}>{num}</Text>
         <TextInput
+          style={styles.counterTextInput}
           placeholder="名前"
+          placeholderTextColor="#fff"
           value={name}
           onChangeText={(text) => updateName(text, num)}
         />
@@ -31,7 +32,15 @@ const styles = StyleSheet.create({
   },
   counterName: {
     width: 150,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#191919",
+    borderWidth:1,
+    borderColor: "#2ecc71"
+  },
+  counterNumber: {
+    color: "#fff",
+  },
+  counterTextInput: {
+    color: "#fff",
   },
 });
 export default CounterName;

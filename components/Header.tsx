@@ -16,11 +16,14 @@ const styles = StyleSheet.create({
         textAlign:"center",
         alignItems:"center",
         justifyContent:"flex-end",
-        backgroundColor: '#6FE39F',
+        backgroundColor: '#191919',
+        borderBottomWidth:1,
+        borderBottomColor: "#3498db",
     },
     headerText:{
         fontSize: 26,
         marginBottom:20,
+        color:"#fff",
     },
 })
 export default Header

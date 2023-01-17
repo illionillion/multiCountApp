@@ -45,10 +45,12 @@ const styles = StyleSheet.create({
     width: "30%",
     height: "80%",
     marginRight: 5,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#191919",
+    borderWidth: 1,
+    borderColor: "#2ecc71",
   },
   buttonText: {
-    color: "blue",
+    color: "#fff",
     fontSize: 28,
   },
 });
