@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   countText: {
     fontSize: 18,
     marginStart: 8,
+    color: "#fff",
   },
 });
 
