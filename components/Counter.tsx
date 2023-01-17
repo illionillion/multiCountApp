@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { StyleSheet, View } from "react-native";
 import CounterName from "./CounterName";
 import CounterMain from "./CounterMain";
@@ -18,6 +18,7 @@ const Counter: FC<CounterProps> = ({
   minusCount
 }) => {
   const no = countState.no;
+  const name = countState.name;
   const count = countState.count;
 
   const Remove = removeCounter;
@@ -33,7 +34,7 @@ const Counter: FC<CounterProps> = ({
 
   return (
     <View style={styles.counterContainer}>
-      <CounterName num={no} />
+      <CounterName num={no} name={name} />
       <CounterMain
         countState={countState}
         Minus={Minus}

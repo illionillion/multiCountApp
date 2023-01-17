@@ -3,14 +3,15 @@ import { StyleSheet, View, TextInput, Text } from "react-native";
 
 export interface CounterNameProps {
     num: number
+    name: string
 }
-const CounterName:FC<CounterNameProps> = ({num}) => {
+const CounterName:FC<CounterNameProps> = ({num, name}) => {
 
     return (
         <View style = {styles.counterNameContainer}>
             <View style  = {styles.counterName}>
                 <Text>{num}</Text>
-                <TextInput placeholder = "名前"/>
+                <TextInput placeholder = "名前" value={name}/>
             </View>
         </View>
     )
