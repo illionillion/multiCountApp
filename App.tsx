@@ -1,8 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  FlatList,
-} from "react-native";
+import { StyleSheet, View, FlatList, Alert } from "react-native";
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -11,14 +7,14 @@ import { useEffect, useState } from "react";
 export interface countStateProps {
   no: number;
   count: number;
-  name: string
+  name: string;
 }
 
 export default function App() {
   const counterState: countStateProps = {
     no: 0,
     count: 0,
-    name: ""
+    name: "",
   };
   const [num, setNum] = useState(1);
   const [counterList, setCounterList] = useState<countStateProps[]>([
@@ -29,8 +25,20 @@ export default function App() {
     setCounterList([...counterList, { no: num, count: 0, name: "" }]);
   };
   const removeAllCounter = () => {
-    setNum(0);
-    setCounterList([]);
+    if (counterList.length === 0) return;
+    Alert.alert("確認", "本当にリセットしますか？", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "OK",
+        onPress: () => {
+          setNum(0);
+          setCounterList([]);
+        },
+      },
+    ]);
   };
   const removeCounter = (num: number) => {
     console.log(num);
@@ -45,7 +53,9 @@ export default function App() {
   };
   const plusCount = (no: number) => {
     const newCounter = counterList.map((counter) =>
-      counter.no === no ? { no: counter.no, count: counter.count + 1, name: counter.name } : counter
+      counter.no === no
+        ? { no: counter.no, count: counter.count + 1, name: counter.name }
+        : counter
     );
     console.log(newCounter);
 
@@ -53,21 +63,25 @@ export default function App() {
   };
   const minusCount = (no: number) => {
     const newCounter = counterList.map((counter) =>
-      counter.no === no ? { no: counter.no, count: counter.count - 1, name: counter.name } : counter
+      counter.no === no
+        ? { no: counter.no, count: counter.count - 1, name: counter.name }
+        : counter
     );
     console.log(newCounter);
 
     setCounterList(newCounter);
   };
-  const updateName = (name:string, no:number) => {
+  const updateName = (name: string, no: number) => {
     const newCounter = counterList.map((counter) =>
-    counter.no === no ? { no: counter.no, count: counter.count, name: name } : counter
+      counter.no === no
+        ? { no: counter.no, count: counter.count, name: name }
+        : counter
     );
     setCounterList(newCounter);
-  }
-  useEffect(()=>{
+  };
+  useEffect(() => {
     console.log(counterList);
-  },[counterList])
+  }, [counterList]);
   return (
     <View style={styles.container}>
       <Header />
@@ -101,8 +115,8 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 6,
     overflow: "scroll",
-    width:"100%",
-    justifyContent:"center",
+    width: "100%",
+    justifyContent: "center",
   },
   scroll: {
     flexDirection: "row",
