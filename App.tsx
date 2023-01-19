@@ -25,7 +25,14 @@ export default function App() {
     setCounterList([...counterList, { no: num, count: 0, name: "" }]);
   };
   const removeAllCounter = () => {
-    if (counterList.length === 0) return;
+    const reset = () => {
+      setNum(0);
+      setCounterList([]);
+    }
+    if (counterList.length === 0) {
+      reset()
+      return;
+    }
     Alert.alert("確認", "本当にリセットしますか？", [
       {
         text: "Cancel",
@@ -33,10 +40,7 @@ export default function App() {
       },
       {
         text: "OK",
-        onPress: () => {
-          setNum(0);
-          setCounterList([]);
-        },
+        onPress: reset,
       },
     ]);
   };
