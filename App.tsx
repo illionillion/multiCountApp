@@ -22,15 +22,22 @@ export default function App() {
   ]);
   const addCounter = () => {
     setNum((prev) => prev + 1);
-    setCounterList([...counterList, { no: num, count: 0, name: "" }]);
+    setCounterList([
+      ...counterList,
+      {
+        no: num,
+        count: 0,
+        name: "",
+      },
+    ]);
   };
   const removeAllCounter = () => {
     const reset = () => {
       setNum(0);
       setCounterList([]);
-    }
+    };
     if (counterList.length === 0) {
-      reset()
+      reset();
       return;
     }
     Alert.alert("確認", "本当にリセットしますか？", [
@@ -50,15 +57,25 @@ export default function App() {
   };
   const changeCount = (num: number, count: number) => {
     setCounterList(
-      counterList.map((obj) =>
-        obj.no === num ? { no: obj.no, count: count, name: obj.name } : obj
+      counterList.map((counter) =>
+        counter.no === num
+          ? {
+              no: counter.no,
+              count: count,
+              name: counter.name,
+            }
+          : counter
       )
     );
   };
   const plusCount = (no: number) => {
     const newCounter = counterList.map((counter) =>
       counter.no === no
-        ? { no: counter.no, count: counter.count + 1, name: counter.name }
+        ? {
+            no: counter.no,
+            count: counter.count + 1,
+            name: counter.name,
+          }
         : counter
     );
     console.log(newCounter);
@@ -68,7 +85,11 @@ export default function App() {
   const minusCount = (no: number) => {
     const newCounter = counterList.map((counter) =>
       counter.no === no
-        ? { no: counter.no, count: counter.count - 1, name: counter.name }
+        ? {
+            no: counter.no,
+            count: counter.count - 1,
+            name: counter.name,
+          }
         : counter
     );
     console.log(newCounter);
@@ -78,7 +99,11 @@ export default function App() {
   const updateName = (name: string, no: number) => {
     const newCounter = counterList.map((counter) =>
       counter.no === no
-        ? { no: counter.no, count: counter.count, name: name }
+        ? {
+            no: counter.no,
+            count: counter.count,
+            name: name,
+          }
         : counter
     );
     setCounterList(newCounter);
