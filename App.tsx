@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, Alert } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import CountApp from "./screens/CountApp";

@@ -1,8 +1,8 @@
 import { StyleSheet, View } from "react-native";
 import CountNumber from "./CountNumber";
 import ButtonContainer from "./ButtonContainer";
-import { countStateProps } from "../App";
 import { FC } from "react";
+import { countStateProps } from "../screens/CountApp";
 
 export interface CounterMainProps {
   countState: countStateProps;
