@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, SetStateAction } from "react";
 import {
   Alert,
   Modal,
@@ -14,7 +14,7 @@ interface SettingModalProps {
   modalVisible: boolean;
   setModalVisible: (flag: boolean) => void;
   counterMaxLength: number;
-  setCounterMaxLength: (num: number) => void;
+  setCounterMaxLength: (num: SetStateAction<number>) => void;
 }
 
 export const SettingModal: FC<SettingModalProps> = ({
@@ -23,9 +23,12 @@ export const SettingModal: FC<SettingModalProps> = ({
   counterMaxLength,
   setCounterMaxLength,
 }) => {
-  const setMaxLength = (num: number) => {
-    if (num === 0) return;
-    setCounterMaxLength(num);
+  const setMinus = () => {
+    if (counterMaxLength === 1) return;
+    setCounterMaxLength((prev) => prev - 1);
+  };
+  const setPlus = () => {
+    setCounterMaxLength((prev) => prev + 1);
   };
   return (
     <Modal
@@ -48,32 +51,24 @@ export const SettingModal: FC<SettingModalProps> = ({
           </TouchableOpacity>
         </View>
         <View style={styles.modalBody}>
-          <View style={styles.settingBackgroundColor}>
-            <Text style={styles.settingBackgroundColorText}>バージョン</Text>
-            <View style={styles.settingBackgroundColorControls}>
-              <Text style={styles.settingBackgroundColorText}>{version}</Text>
+          <View style={styles.settingItemTitle}>
+            <Text style={styles.settingItemText}>バージョン</Text>
+            <View style={styles.settingItemControls}>
+              <Text style={styles.settingItemText}>{version}</Text>
             </View>
           </View>
-          <View style={styles.settingBackgroundColor}>
-            <Text style={styles.settingBackgroundColorText}>最大数</Text>
-            <View style={styles.settingBackgroundColorControls}>
-              <TextInput
-                style={styles.settingBackgroundColorTextInput}
-                placeholder="数値を入力"
-                placeholderTextColor="#fff"
-                value={counterMaxLength.toString()}
-                onChangeText={(text) =>
-                  setMaxLength(
-                    isNaN(parseInt(text)) ? counterMaxLength : parseInt(text)
-                  )
-                }
-                keyboardType="number-pad"
-              />
-              {/* <TouchableOpacity style={styles.settingBackgroundColorTextButton}>
-                <Text style={styles.settingBackgroundColorTextButtonText}>
-                  変更
-                </Text>
-              </TouchableOpacity> */}
+          <View style={styles.settingItemTitle}>
+            <Text style={styles.settingItemText}>最大数</Text>
+            <View style={styles.settingItemControls}>
+              <TouchableOpacity onPress={setMinus}>
+                <Text style={styles.settingItemText}>-</Text>
+              </TouchableOpacity>
+              <View>
+                <Text style={styles.settingItemText}>{counterMaxLength}</Text>
+              </View>
+              <TouchableOpacity onPress={setPlus}>
+                <Text style={styles.settingItemText}>+</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -128,35 +123,18 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     backgroundColor: "#191919",
   },
-  settingBackgroundColor: {
+  settingItemTitle: {
     width: "100%",
     marginTop: 10,
   },
-  settingBackgroundColorText: {
+  settingItemText: {
     color: "#fff",
     marginHorizontal: 10,
     fontSize: 20,
   },
-  settingBackgroundColorControls: {
+  settingItemControls: {
     display: "flex",
     flexDirection: "row",
     marginHorizontal: 10,
-  },
-  settingBackgroundColorTextInput: {
-    borderWidth: 1,
-    borderColor: "#2ecc71",
-    flex: 4,
-    color: "#fff",
-  },
-  settingBackgroundColorTextButton: {
-    borderWidth: 1,
-    borderColor: "#2ecc71",
-    borderRadius: 25,
-    marginHorizontal: 10,
-    flex: 1,
-  },
-  settingBackgroundColorTextButtonText: {
-    color: "#fff",
-    textAlign: "center",
   },
 });
