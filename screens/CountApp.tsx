@@ -3,9 +3,6 @@ import {
   View,
   FlatList,
   Alert,
-  Modal,
-  Pressable,
-  Text,
 } from "react-native";
 import Counter from "../components/Counter";
 import Header from "../components/Header";
@@ -154,13 +151,7 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 6,
-    overflow: "scroll",
     width: "100%",
     justifyContent: "center",
-  },
-  scroll: {
-    flexDirection: "row",
-    // width:'100%',
-    flex: 1,
   },
 });

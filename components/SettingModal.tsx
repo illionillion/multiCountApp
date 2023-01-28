@@ -1,5 +1,14 @@
-import { FC } from "react";
-import { Alert, Modal, Pressable, StyleSheet, Text, View } from "react-native";
+import { FC, useState } from "react";
+import {
+  Alert,
+  Modal,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { version } from "../App";
 
 interface SettingModalProps {
   modalVisible: boolean;
@@ -10,6 +19,7 @@ export const SettingModal: FC<SettingModalProps> = ({
   modalVisible,
   setModalVisible,
 }) => {
+  const [currentColor, setCurrentColor] = useState<string>("");
   return (
     <Modal
       animationType="slide"
@@ -23,16 +33,37 @@ export const SettingModal: FC<SettingModalProps> = ({
       <View style={styles.centeredView}>
         <View style={styles.moalHeader}>
           <Text style={styles.headerText}>設定</Text>
-          <Pressable
+          <TouchableOpacity
             onPress={() => setModalVisible(!modalVisible)}
             style={styles.settingClose}
           >
             <Text style={styles.settingCloseText}>閉じる</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <View style={styles.modalBody}>
-          <View style={styles.settingBackgroundColor}>
+          {/* <View style={styles.settingBackgroundColor}>
             <Text style={styles.settingBackgroundColorText}>背景色</Text>
+            <View style={styles.settingBackgroundColorControls}>
+              <TextInput
+                style={styles.settingBackgroundColorTextInput}
+                placeholder="カラーコード入力（例：#000000）"
+                placeholderTextColor="#fff"
+                value={currentColor}
+                onChangeText={(text) => setCurrentColor(text)}
+                maxLength={7}
+              />
+              <TouchableOpacity style={styles.settingBackgroundColorTextButton}>
+                <Text style={styles.settingBackgroundColorTextButtonText}>
+                  変更
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View> */}
+          <View style={styles.settingBackgroundColor}>
+            <Text style={styles.settingBackgroundColorText}>バージョン</Text>
+            <View style={styles.settingBackgroundColorControls}>
+                <Text style={styles.settingBackgroundColorText}>{version}</Text>
+            </View>
           </View>
         </View>
       </View>
@@ -70,12 +101,16 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     right: 20,
+    display:"flex",
   },
   settingCloseText: {
     color: "#fff",
+    fontSize: 15,
+    justifyContent:"center",
+    alignItems:"center",
   },
   modalBody: {
-    flex: 6,
+    flex: 7,
     width: "100%",
     textAlign: "center",
     alignItems: "center",
@@ -84,46 +119,33 @@ const styles = StyleSheet.create({
   },
   settingBackgroundColor: {
     width: "100%",
-    marginTop:10,
+    marginTop: 10,
   },
   settingBackgroundColorText: {
     color: "#fff",
     marginHorizontal: 10,
     fontSize: 20,
   },
-  //   modalView: {
-  //     margin: 20,
-  //     backgroundColor: "white",
-  //     borderRadius: 20,
-  //     padding: 35,
-  //     alignItems: "center",
-  //     shadowColor: "#000",
-  //     shadowOffset: {
-  //       width: 0,
-  //       height: 2,
-  //     },
-  //     shadowOpacity: 0.25,
-  //     shadowRadius: 4,
-  //     elevation: 5,
-  //   },
-  //   button: {
-  //     borderRadius: 20,
-  //     padding: 10,
-  //     elevation: 2,
-  //   },
-  //   buttonOpen: {
-  //     backgroundColor: "#F194FF",
-  //   },
-  //   buttonClose: {
-  //     backgroundColor: "#2196F3",
-  //   },
-  //   textStyle: {
-  //     color: "white",
-  //     fontWeight: "bold",
-  //     textAlign: "center",
-  //   },
-  //   modalText: {
-  //     marginBottom: 15,
-  //     textAlign: "center",
-  //   },
+  settingBackgroundColorControls: {
+    display: "flex",
+    flexDirection: "row",
+    marginHorizontal: 10,
+  },
+  settingBackgroundColorTextInput: {
+    borderWidth: 1,
+    borderColor: "#2ecc71",
+    flex: 4,
+    color: "#fff",
+  },
+  settingBackgroundColorTextButton: {
+    borderWidth: 1,
+    borderColor: "#2ecc71",
+    borderRadius: 25,
+    marginHorizontal: 10,
+    flex: 1,
+  },
+  settingBackgroundColorTextButtonText: {
+    color: "#fff",
+    textAlign: "center",
+  },
 });
