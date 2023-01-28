@@ -24,7 +24,7 @@ export default function CountApp() {
   ]);
   const [modalVisible, setModalVisible] = useState(false);
   const addCounter = () => {
-    if (counterMaxLength === counterList.length) return;
+    if (counterMaxLength <= counterList.length) return;
     setNum((prev) => prev + 1);
     setCounterList([
       ...counterList,
