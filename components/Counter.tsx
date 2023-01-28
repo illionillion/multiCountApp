@@ -1,8 +1,8 @@
 import { FC, useEffect, useRef } from "react";
-import { StyleSheet, View, Animated } from "react-native";
+import { StyleSheet, Animated } from "react-native";
 import CounterName from "./CounterName";
 import CounterMain from "./CounterMain";
-import { countStateProps } from "../App";
+import { countStateProps } from "../screens/CountApp";
 export interface CounterProps {
   countState: countStateProps;
   removeCounter: (num: number) => void;

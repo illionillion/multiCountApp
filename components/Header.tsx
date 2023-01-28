@@ -2,15 +2,21 @@ import { StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
 const Header = (): JSX.Element => {
+  const onPress = () => {
+    console.log("Press Icon");
+    // ここでnavigationで遷移
+  };
+
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>カウントアプリ</Text>
       {/* @ts-ignore */}
       <AntDesign
         name="setting"
-        size={24}
+        size={30}
         color="white"
         style={styles.settingIcon}
+        onPress={onPress}
       />
     </View>
   );
