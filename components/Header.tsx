@@ -1,10 +1,17 @@
 import { StyleSheet, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { FC } from "react";
 
-const Header = (): JSX.Element => {
+interface HeaderProps {
+  modalVisible: boolean;
+  setModalVisible: (flag: boolean) => void;
+}
+
+const Header: FC<HeaderProps> = ({ modalVisible, setModalVisible }) => {
   const onPress = () => {
     console.log("Press Icon");
     // ここでnavigationで遷移
+    setModalVisible(!modalVisible);
   };
 
   return (

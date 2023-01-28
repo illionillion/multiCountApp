@@ -1,8 +1,17 @@
-import { StyleSheet, View, FlatList, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  Alert,
+  Modal,
+  Pressable,
+  Text,
+} from "react-native";
 import Counter from "../components/Counter";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
+import { SettingModal } from "../components/SettingModal";
 
 export interface countStateProps {
   no: number;
@@ -20,6 +29,7 @@ export default function CountApp() {
   const [counterList, setCounterList] = useState<countStateProps[]>([
     counterState,
   ]);
+  const [modalVisible, setModalVisible] = useState(false);
   const addCounter = () => {
     setNum((prev) => prev + 1);
     setCounterList([
@@ -113,7 +123,7 @@ export default function CountApp() {
   }, [counterList]);
   return (
     <View style={styles.container}>
-      <Header />
+      <Header modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <View style={styles.mainContainer}>
         <FlatList
           style={{}}
@@ -131,6 +141,7 @@ export default function CountApp() {
         />
       </View>
       <Footer addCounter={addCounter} removeAllCounter={removeAllCounter} />
+      <SettingModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
     </View>
   );
 }
