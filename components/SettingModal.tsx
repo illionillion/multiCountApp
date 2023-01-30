@@ -2,6 +2,7 @@ import { FC, SetStateAction } from "react";
 import {
   Alert,
   Modal,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -116,7 +117,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalBody: {
-    flex: 9,
+    ...Platform.select({
+      ios: {
+        flex: 7
+      },
+      android: {
+        flex: 11
+      },
+    }),
+    // flex: 9,
     width: "100%",
     textAlign: "center",
     alignItems: "center",
