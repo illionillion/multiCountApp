@@ -36,7 +36,7 @@ export const SettingModal: FC<SettingModalProps> = ({
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
+        console.log("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalBody: {
-    flex: 7,
+    flex: 9,
     width: "100%",
     textAlign: "center",
     alignItems: "center",
