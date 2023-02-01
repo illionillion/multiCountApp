@@ -29,7 +29,7 @@ export default function CountApp() {
     setCounterList([
       ...counterList,
       {
-        no: num,
+        no: num + 1,
         count: 0,
         name: "",
       },
@@ -37,7 +37,7 @@ export default function CountApp() {
   };
   const removeAllCounter = () => {
     const reset = () => {
-      setNum(1);
+      setNum(0);
       setCounterList([]);
     };
     if (counterList.length === 0) {
