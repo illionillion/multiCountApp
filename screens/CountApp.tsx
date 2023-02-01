@@ -12,12 +12,12 @@ export interface countStateProps {
 }
 
 export default function CountApp() {
+  const [num, setNum] = useState(1);
   const counterState: countStateProps = {
-    no: 0,
+    no: num,
     count: 0,
     name: "",
   };
-  const [num, setNum] = useState(1);
   const [counterMaxLength, setCounterMaxLength] = useState(20);
   const [counterList, setCounterList] = useState<countStateProps[]>([
     counterState,
@@ -37,7 +37,7 @@ export default function CountApp() {
   };
   const removeAllCounter = () => {
     const reset = () => {
-      setNum(0);
+      setNum(1);
       setCounterList([]);
     };
     if (counterList.length === 0) {

@@ -32,15 +32,21 @@ const styles = StyleSheet.create({
   },
   counterName: {
     width: 150,
+    height: 30,
     backgroundColor: "#191919",
     borderWidth:1,
-    borderColor: "#2ecc71"
+    borderColor: "#2ecc71",
+    alignItems:"center",
+    flexDirection: "row",
   },
   counterNumber: {
     color: "#fff",
+    marginHorizontal:5,
   },
   counterTextInput: {
     color: "#fff",
+    width:"100%",
+    fontSize:15,
   },
 });
 export default CounterName;
