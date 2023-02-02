@@ -31,6 +31,9 @@ export const SettingModal: FC<SettingModalProps> = ({
   const setPlus = () => {
     setCounterMaxLength((prev) => prev + 1);
   };
+  const setReset = () => {
+    setCounterMaxLength(20);
+  };
   return (
     <Modal
       animationType="slide"
@@ -69,6 +72,9 @@ export const SettingModal: FC<SettingModalProps> = ({
               </View>
               <TouchableOpacity onPress={setPlus}>
                 <Text style={styles.settingItemText}>+</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={setReset}>
+                <Text style={styles.settingItemText}>リセット</Text>
               </TouchableOpacity>
             </View>
           </View>
