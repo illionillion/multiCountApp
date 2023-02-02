@@ -1,9 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  Alert,
-} from "react-native";
+import { StyleSheet, View, FlatList, Alert } from "react-native";
 import Counter from "../components/Counter";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -17,22 +12,24 @@ export interface countStateProps {
 }
 
 export default function CountApp() {
+  const [num, setNum] = useState(1);
   const counterState: countStateProps = {
-    no: 0,
+    no: num,
     count: 0,
     name: "",
   };
-  const [num, setNum] = useState(1);
+  const [counterMaxLength, setCounterMaxLength] = useState(20);
   const [counterList, setCounterList] = useState<countStateProps[]>([
     counterState,
   ]);
   const [modalVisible, setModalVisible] = useState(false);
   const addCounter = () => {
+    if (counterMaxLength <= counterList.length) return;
     setNum((prev) => prev + 1);
     setCounterList([
       ...counterList,
       {
-        no: num,
+        no: num + 1,
         count: 0,
         name: "",
       },
@@ -138,7 +135,12 @@ export default function CountApp() {
         />
       </View>
       <Footer addCounter={addCounter} removeAllCounter={removeAllCounter} />
-      <SettingModal modalVisible={modalVisible} setModalVisible={setModalVisible}/>
+      <SettingModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        counterMaxLength={counterMaxLength}
+        setCounterMaxLength={setCounterMaxLength}
+      />
     </View>
   );
 }

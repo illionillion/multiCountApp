@@ -1,7 +1,8 @@
-import { FC, useState } from "react";
+import { FC, SetStateAction } from "react";
 import {
   Alert,
   Modal,
+  Platform,
   StyleSheet,
   Text,
   TextInput,
@@ -13,20 +14,33 @@ import { version } from "../App";
 interface SettingModalProps {
   modalVisible: boolean;
   setModalVisible: (flag: boolean) => void;
+  counterMaxLength: number;
+  setCounterMaxLength: (num: SetStateAction<number>) => void;
 }
 
 export const SettingModal: FC<SettingModalProps> = ({
   modalVisible,
   setModalVisible,
+  counterMaxLength,
+  setCounterMaxLength,
 }) => {
-  const [currentColor, setCurrentColor] = useState<string>("");
+  const setMinus = () => {
+    if (counterMaxLength === 1) return;
+    setCounterMaxLength((prev) => prev - 1);
+  };
+  const setPlus = () => {
+    setCounterMaxLength((prev) => prev + 1);
+  };
+  const setReset = () => {
+    setCounterMaxLength(20);
+  };
   return (
     <Modal
       animationType="slide"
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        Alert.alert("Modal has been closed.");
+        console.log("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
@@ -41,28 +55,27 @@ export const SettingModal: FC<SettingModalProps> = ({
           </TouchableOpacity>
         </View>
         <View style={styles.modalBody}>
-          {/* <View style={styles.settingBackgroundColor}>
-            <Text style={styles.settingBackgroundColorText}>背景色</Text>
-            <View style={styles.settingBackgroundColorControls}>
-              <TextInput
-                style={styles.settingBackgroundColorTextInput}
-                placeholder="カラーコード入力（例：#000000）"
-                placeholderTextColor="#fff"
-                value={currentColor}
-                onChangeText={(text) => setCurrentColor(text)}
-                maxLength={7}
-              />
-              <TouchableOpacity style={styles.settingBackgroundColorTextButton}>
-                <Text style={styles.settingBackgroundColorTextButtonText}>
-                  変更
-                </Text>
-              </TouchableOpacity>
+          <View style={styles.settingItemTitle}>
+            <Text style={styles.settingItemText}>バージョン</Text>
+            <View style={styles.settingItemControls}>
+              <Text style={styles.settingItemText}>{version}</Text>
             </View>
-          </View> */}
-          <View style={styles.settingBackgroundColor}>
-            <Text style={styles.settingBackgroundColorText}>バージョン</Text>
-            <View style={styles.settingBackgroundColorControls}>
-                <Text style={styles.settingBackgroundColorText}>{version}</Text>
+          </View>
+          <View style={styles.settingItemTitle}>
+            <Text style={styles.settingItemText}>最大数</Text>
+            <View style={styles.settingItemControls}>
+              <TouchableOpacity onPress={setMinus}>
+                <Text style={styles.settingItemText}>-</Text>
+              </TouchableOpacity>
+              <View>
+                <Text style={styles.settingItemText}>{counterMaxLength}</Text>
+              </View>
+              <TouchableOpacity onPress={setPlus}>
+                <Text style={styles.settingItemText}>+</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={setReset}>
+                <Text style={styles.settingItemText}>リセット</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -101,51 +114,42 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     right: 20,
-    display:"flex",
+    display: "flex",
   },
   settingCloseText: {
     color: "#fff",
     fontSize: 15,
-    justifyContent:"center",
-    alignItems:"center",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalBody: {
-    flex: 7,
+    ...Platform.select({
+      ios: {
+        flex: 7
+      },
+      android: {
+        flex: 11
+      },
+    }),
+    // flex: 9,
     width: "100%",
     textAlign: "center",
     alignItems: "center",
     // justifyContent: "center",
     backgroundColor: "#191919",
   },
-  settingBackgroundColor: {
+  settingItemTitle: {
     width: "100%",
     marginTop: 10,
   },
-  settingBackgroundColorText: {
+  settingItemText: {
     color: "#fff",
     marginHorizontal: 10,
     fontSize: 20,
   },
-  settingBackgroundColorControls: {
+  settingItemControls: {
     display: "flex",
     flexDirection: "row",
     marginHorizontal: 10,
-  },
-  settingBackgroundColorTextInput: {
-    borderWidth: 1,
-    borderColor: "#2ecc71",
-    flex: 4,
-    color: "#fff",
-  },
-  settingBackgroundColorTextButton: {
-    borderWidth: 1,
-    borderColor: "#2ecc71",
-    borderRadius: 25,
-    marginHorizontal: 10,
-    flex: 1,
-  },
-  settingBackgroundColorTextButtonText: {
-    color: "#fff",
-    textAlign: "center",
   },
 });
