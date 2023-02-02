@@ -7,7 +7,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "eas-build:a": "eas build --platform android"
   },
   "dependencies": {
     "expo": "~45.0.0",
