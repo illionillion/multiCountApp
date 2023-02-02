@@ -26,10 +26,19 @@
         "foregroundImage": "./assets/multiCountIcon.png",
         "backgroundColor": "#191919"
       },
-      "softwareKeyboardLayoutMode": "pan"
+      "softwareKeyboardLayoutMode": "pan",
+      "permissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f76969a8-029d-4387-a786-3923d063afb5"
+      }
     }
   }
 }
