@@ -130,13 +130,17 @@ export default function CountApp() {
         console.log("getData", getCounterList);
         const json: countStateProps[] = JSON.parse(getCounterList);
         setCounterList(json);
-        setNum(
-          // 最大値を取得
-          Math.max.apply(
-            null,
-            json.map((item) => item.no)
-          )
-        );
+        if (json.length !== 0) {
+          setNum(
+            // 最大値を取得
+            Math.max.apply(
+              null,
+              json.map((item) => item.no)
+            )
+          );
+        } else {
+          setNum(0)
+        }
       }
     })();
   }, []);
