@@ -4,11 +4,32 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { SettingModal } from "../components/SettingModal";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface countStateProps {
   no: number;
   count: number;
   name: string;
+}
+const getData = async (key: string) => { // 保存されている値がJSONの場合はパースして使います
+  try {
+    const value = await AsyncStorage.getItem(key);
+
+    return value;
+  } catch (err) {
+    console.error(err)
+  }
+  return '';
+}
+
+const setData = async(key: string, value: any) => { // 型は適宜設定します
+  try {
+    const json = JSON.stringify(value);
+
+    await AsyncStorage.setItem(key, json);
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 export default function CountApp() {
@@ -20,7 +41,7 @@ export default function CountApp() {
   };
   const [counterMaxLength, setCounterMaxLength] = useState(20);
   const [counterList, setCounterList] = useState<countStateProps[]>([
-    counterState,
+    // counterState,
   ]);
   const [modalVisible, setModalVisible] = useState(false);
   const addCounter = () => {
@@ -113,7 +134,18 @@ export default function CountApp() {
     setCounterList(newCounter);
   };
   useEffect(() => {
-    console.log(counterList);
+    (async ()=>{
+      console.log('getData')
+      console.log(await getData('CountList'))
+      const data:countStateProps = JSON.parse(await getData('CountList') || '')
+      setCounterList(data)
+    })()
+  }, []);
+  useEffect(() => {
+    (async ()=>{
+      console.log(counterList);
+      await setData('CountList', counterList)
+    })()
   }, [counterList]);
   return (
     <View style={styles.container}>
