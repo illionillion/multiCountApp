@@ -9,7 +9,6 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ modalVisible, setModalVisible }) => {
   const onPress = () => {
-    console.log("Press Icon");
     // ここでnavigationで遷移
     setModalVisible(!modalVisible);
   };

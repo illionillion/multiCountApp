@@ -4,46 +4,30 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { SettingModal } from "../components/SettingModal";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getData, setData } from "../components/DataSave";
 
 export interface countStateProps {
   no: number;
   count: number;
   name: string;
 }
-const getData = async (key: string) => { // 保存されている値がJSONの場合はパースして使います
-  try {
-    const value = await AsyncStorage.getItem(key);
-
-    return value;
-  } catch (err) {
-    console.error(err)
-  }
-  return '';
-}
-
-const setData = async(key: string, value: any) => { // 型は適宜設定します
-  try {
-    const json = JSON.stringify(value);
-
-    await AsyncStorage.setItem(key, json);
-  } catch (err) {
-    console.error(err)
-  }
-}
 
 export default function CountApp() {
   const [num, setNum] = useState(1);
-  const counterState: countStateProps = {
+  const initialCounterState: countStateProps = {
     no: num,
     count: 0,
     name: "",
   };
-  const [counterMaxLength, setCounterMaxLength] = useState(20);
+  const initialCounterMaxLength = 20;
+  const [counterMaxLength, setCounterMaxLength] = useState(
+    initialCounterMaxLength
+  );
   const [counterList, setCounterList] = useState<countStateProps[]>([
-    // counterState,
+    initialCounterState,
   ]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [isDone, setIsDone] = useState(false);
   const addCounter = () => {
     if (counterMaxLength <= counterList.length) return;
     setNum((prev) => prev + 1);
@@ -77,7 +61,6 @@ export default function CountApp() {
     ]);
   };
   const removeCounter = (num: number) => {
-    console.log(num);
     setCounterList(counterList.filter((count, index) => count.no !== num));
   };
   const changeCount = (num: number, count: number) => {
@@ -103,8 +86,6 @@ export default function CountApp() {
           }
         : counter
     );
-    console.log(newCounter);
-
     setCounterList(newCounter);
   };
   const minusCount = (no: number) => {
@@ -117,8 +98,6 @@ export default function CountApp() {
           }
         : counter
     );
-    console.log(newCounter);
-
     setCounterList(newCounter);
   };
   const updateName = (name: string, no: number) => {
@@ -134,19 +113,46 @@ export default function CountApp() {
     setCounterList(newCounter);
   };
   useEffect(() => {
-    (async ()=>{
-      console.log('getData')
-      console.log(await getData('CountList'))
-      const data:countStateProps = JSON.parse(await getData('CountList') || '')
-      setCounterList(data)
-    })()
+    (async () => {
+      // データの読み取り
+      console.log("getData");
+      const getCounterMaxLength = await getData("CounterMaxLength");
+      if (getCounterMaxLength !== "") {
+        console.log("getData", getCounterMaxLength);
+        setCounterMaxLength(
+          !isNaN(parseInt(getCounterMaxLength))
+            ? parseInt(getCounterMaxLength)
+            : initialCounterMaxLength
+        );
+      }
+      const getCounterList = await getData("CountList");
+      if (getCounterList !== "") {
+        console.log("getData", getCounterList);
+        const json: countStateProps[] = JSON.parse(getCounterList);
+        setCounterList(json);
+        setNum(
+          // 最大値を取得
+          Math.max.apply(
+            null,
+            json.map((item) => item.no)
+          )
+        );
+      }
+    })();
   }, []);
   useEffect(() => {
-    (async ()=>{
-      console.log(counterList);
-      await setData('CountList', counterList)
-    })()
-  }, [counterList]);
+    (async () => {
+      if (!isDone) {
+        setIsDone(!isDone);
+        return;
+      }
+      console.log("setData");
+      // データの保存
+      await setData("CountList", JSON.stringify(counterList));
+      await setData("CounterMaxLength", counterMaxLength.toString());
+      await setData("num", num.toString());
+    })();
+  }, [counterList, counterMaxLength, num]);
   return (
     <View style={styles.container}>
       <Header modalVisible={modalVisible} setModalVisible={setModalVisible} />
@@ -172,6 +178,7 @@ export default function CountApp() {
         setModalVisible={setModalVisible}
         counterMaxLength={counterMaxLength}
         setCounterMaxLength={setCounterMaxLength}
+        initialCounterMaxLength={initialCounterMaxLength}
       />
     </View>
   );
