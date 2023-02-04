@@ -1,21 +1,20 @@
 import { FC, SetStateAction } from "react";
 import {
-  Alert,
   Modal,
   Platform,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { version } from "../App";
+import { version } from "./DataSave";
 
 interface SettingModalProps {
   modalVisible: boolean;
   setModalVisible: (flag: boolean) => void;
   counterMaxLength: number;
   setCounterMaxLength: (num: SetStateAction<number>) => void;
+  initialCounterMaxLength: number
 }
 
 export const SettingModal: FC<SettingModalProps> = ({
@@ -23,6 +22,7 @@ export const SettingModal: FC<SettingModalProps> = ({
   setModalVisible,
   counterMaxLength,
   setCounterMaxLength,
+  initialCounterMaxLength
 }) => {
   const setMinus = () => {
     if (counterMaxLength === 1) return;
@@ -32,7 +32,7 @@ export const SettingModal: FC<SettingModalProps> = ({
     setCounterMaxLength((prev) => prev + 1);
   };
   const setReset = () => {
-    setCounterMaxLength(20);
+    setCounterMaxLength(initialCounterMaxLength);
   };
   return (
     <Modal
@@ -40,7 +40,6 @@ export const SettingModal: FC<SettingModalProps> = ({
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        console.log("Modal has been closed.");
         setModalVisible(!modalVisible);
       }}
     >
