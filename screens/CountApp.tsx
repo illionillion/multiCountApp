@@ -162,14 +162,14 @@ export default function CountApp() {
   }, [counterList, counterMaxLength, num]);
   return (
     <View style={styles.container}>
-      {/* うまくいかない */}
-      {/* <BannerAd
+      {/* 広告 */}
+      <BannerAd
         unitId={adUnitId}
         size={BannerAdSize.FULL_BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,
         }}
-      /> */}
+      />
       <Header modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <View style={styles.mainContainer}>
         <FlatList
