@@ -1,5 +1,7 @@
 import { FC, SetStateAction } from "react";
 import {
+  Button,
+  Linking,
   Modal,
   Platform,
   StyleSheet,
@@ -42,6 +44,16 @@ export const SettingModal: FC<SettingModalProps> = ({
   const setReset = () => {
     setCounterMaxLength(initialCounterMaxLength);
   };
+  const openUrl= (url:string) => {
+    Linking.canOpenURL(url).then(supported => {
+      if (!supported) {
+        console.log('無効なURLです: ' + url);
+      } else {
+        return Linking.openURL(url);
+      }
+    }).catch(err => console.error('URLを開けませんでした。', err));
+    
+  }
   return (
     <Modal
       animationType="slide"
@@ -85,13 +97,17 @@ export const SettingModal: FC<SettingModalProps> = ({
               </TouchableOpacity>
             </View>
           </View>
+          <TouchableOpacity style={styles.settingItemTitle} onPress={()=>openUrl("https://ji9xputuw8gwgczk2gnxzg.on.drv.tw/www.render.asar.server.com/privacy-policy/README.html")}>
+            <Text style={styles.settingItemText}>利用規約・プライバシーポリシー</Text>
+            <Text style={{color:"#fff"}}>https://ji9xputuw8gwgczk2gnxzg.on.drv.tw/www.render.asar.server.com/privacy-policy/README.html</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      <View style={{ flex: 1 }}>
+      <View style={{backgroundColor:"#191919",justifyContent:"center",alignItems: "center" }}>
         {/* 広告 */}
         <BannerAd
           unitId={adUnitId}
-          size={BannerAdSize.FULL_BANNER}
+          size={BannerAdSize.BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
           }}
@@ -145,7 +161,7 @@ const styles = StyleSheet.create({
         flex: 7,
       },
       android: {
-        flex: 11,
+        flex: 9,
       },
     }),
     // flex: 9,
