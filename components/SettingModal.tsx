@@ -7,6 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds,
+} from "react-native-google-mobile-ads";
 import { version } from "./DataSave";
 
 interface SettingModalProps {
@@ -14,15 +19,18 @@ interface SettingModalProps {
   setModalVisible: (flag: boolean) => void;
   counterMaxLength: number;
   setCounterMaxLength: (num: SetStateAction<number>) => void;
-  initialCounterMaxLength: number
+  initialCounterMaxLength: number;
 }
+const adUnitId = __DEV__
+  ? TestIds.BANNER
+  : "ca-app-pub-5141642513537299/4758660592";
 
 export const SettingModal: FC<SettingModalProps> = ({
   modalVisible,
   setModalVisible,
   counterMaxLength,
   setCounterMaxLength,
-  initialCounterMaxLength
+  initialCounterMaxLength,
 }) => {
   const setMinus = () => {
     if (counterMaxLength === 1) return;
@@ -79,6 +87,16 @@ export const SettingModal: FC<SettingModalProps> = ({
           </View>
         </View>
       </View>
+      <View style={{ flex: 1 }}>
+        {/* 広告 */}
+        <BannerAd
+          unitId={adUnitId}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+        />
+      </View>
     </Modal>
   );
 };
@@ -124,10 +142,10 @@ const styles = StyleSheet.create({
   modalBody: {
     ...Platform.select({
       ios: {
-        flex: 7
+        flex: 7,
       },
       android: {
-        flex: 11
+        flex: 11,
       },
     }),
     // flex: 9,

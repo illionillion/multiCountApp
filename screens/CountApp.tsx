@@ -5,10 +5,6 @@ import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { SettingModal } from "../components/SettingModal";
 import { getData, setData } from "../components/DataSave";
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-5141642513537299/4758660592';
-
 export interface countStateProps {
   no: number;
   count: number;
@@ -162,14 +158,6 @@ export default function CountApp() {
   }, [counterList, counterMaxLength, num]);
   return (
     <View style={styles.container}>
-      {/* 広告 */}
-      <BannerAd
-        unitId={adUnitId}
-        size={BannerAdSize.FULL_BANNER}
-        requestOptions={{
-          requestNonPersonalizedAdsOnly: true,
-        }}
-      />
       <Header modalVisible={modalVisible} setModalVisible={setModalVisible} />
       <View style={styles.mainContainer}>
         <FlatList
