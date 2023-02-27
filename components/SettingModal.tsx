@@ -97,9 +97,9 @@ export const SettingModal: FC<SettingModalProps> = ({
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity style={styles.settingItemTitle} onPress={()=>openUrl("https://ji9xputuw8gwgczk2gnxzg.on.drv.tw/www.render.asar.server.com/privacy-policy/README.html")}>
+          <TouchableOpacity style={styles.settingItemTitle} onPress={()=>openUrl("https://multicountapp-privacy-policy.on.drv.tw/multicountapp-privacy-policy/")}>
             <Text style={styles.settingItemText}>利用規約・プライバシーポリシー</Text>
-            <Text style={{color:"#fff"}}>https://ji9xputuw8gwgczk2gnxzg.on.drv.tw/www.render.asar.server.com/privacy-policy/README.html</Text>
+            <Text style={{color:"#fff"}}>https://multicountapp-privacy-policy.on.drv.tw/multicountapp-privacy-policy/</Text>
           </TouchableOpacity>
         </View>
       </View>
