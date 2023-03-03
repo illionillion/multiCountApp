@@ -127,13 +127,16 @@ export const SettingModal: FC<SettingModalProps> = ({
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
           }}
-          onAdFailedToLoad={(error) => {
-            Alert.alert(error.name, error.message, [
-              {
-                text: "OK",
-              },
-            ]);
-          }}
+          /**
+           * [admob/no-fill] The ad request was successful, but no ad was returned due to lack of ad inventory.が表示された
+           */
+          // onAdFailedToLoad={(error) => {
+          //   Alert.alert(error.name, error.message, [
+          //     {
+          //       text: "OK",
+          //     },
+          //   ]);
+          // }}
 
         />
       </View>
