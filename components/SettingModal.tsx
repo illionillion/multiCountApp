@@ -1,6 +1,6 @@
-import { FC, SetStateAction } from "react";
+import { FC, SetStateAction, useState } from "react";
 import {
-  Button,
+  Alert,
   Linking,
   Modal,
   Platform,
@@ -34,6 +34,7 @@ export const SettingModal: FC<SettingModalProps> = ({
   setCounterMaxLength,
   initialCounterMaxLength,
 }) => {
+  const [admobError, setAdmobError] = useState<string>("");
   const setMinus = () => {
     if (counterMaxLength === 1) return;
     setCounterMaxLength((prev) => prev - 1);
@@ -44,16 +45,17 @@ export const SettingModal: FC<SettingModalProps> = ({
   const setReset = () => {
     setCounterMaxLength(initialCounterMaxLength);
   };
-  const openUrl= (url:string) => {
-    Linking.canOpenURL(url).then(supported => {
-      if (!supported) {
-        console.log('無効なURLです: ' + url);
-      } else {
-        return Linking.openURL(url);
-      }
-    }).catch(err => console.error('URLを開けませんでした。', err));
-    
-  }
+  const openUrl = (url: string) => {
+    Linking.canOpenURL(url)
+      .then((supported) => {
+        if (!supported) {
+          console.log("無効なURLです: " + url);
+        } else {
+          return Linking.openURL(url);
+        }
+      })
+      .catch((err) => console.error("URLを開けませんでした。", err));
+  };
   return (
     <Modal
       animationType="slide"
@@ -97,12 +99,27 @@ export const SettingModal: FC<SettingModalProps> = ({
               </TouchableOpacity>
             </View>
           </View>
-          <TouchableOpacity style={styles.settingItemTitle} onPress={()=>openUrl("https://multicountapp-privacy-policy.on.drv.tw/multicountapp-privacy-policy/")}>
-            <Text style={styles.settingItemText}>利用規約・プライバシーポリシー</Text>
+          <TouchableOpacity
+            style={styles.settingItemTitle}
+            onPress={() =>
+              openUrl(
+                "https://multicountapp-privacy-policy.on.drv.tw/multicountapp-privacy-policy/"
+              )
+            }
+          >
+            <Text style={styles.settingItemText}>
+              利用規約・プライバシーポリシー
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{backgroundColor:"#191919",justifyContent:"center",alignItems: "center" }}>
+      <View
+        style={{
+          backgroundColor: "#191919",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         {/* 広告 */}
         <BannerAd
           unitId={adUnitId}
@@ -110,6 +127,14 @@ export const SettingModal: FC<SettingModalProps> = ({
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
           }}
+          onAdFailedToLoad={(error) => {
+            Alert.alert(error.name, error.message, [
+              {
+                text: "OK",
+              },
+            ]);
+          }}
+
         />
       </View>
     </Modal>
