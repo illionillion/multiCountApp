@@ -13,8 +13,8 @@ const CounterName: FC<CounterNameProps> = ({ num, name, updateName }) => {
         <Text style={styles.counterNumber}>{num}</Text>
         <TextInput
           style={styles.counterTextInput}
-          placeholder="名前"
-          placeholderTextColor="#fff"
+          placeholder="名前を入力"
+          placeholderTextColor="#757575"
           value={name}
           onChangeText={(text) => updateName(text, num)}
         />

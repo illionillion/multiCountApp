@@ -14,7 +14,7 @@ const Footer: FC<FooterProps> = ({
   return (
     <View style={styles.footerContainer}>
       <TouchableOpacity onPress={add} style={styles.footerButton}>
-        <Text style={styles.footerButtonText}>作成</Text>
+        <Text style={styles.footerButtonText}>カウンター追加</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={removeAll} style={styles.footerButton}>
         <Text style={styles.footerButtonText}>リセット</Text>

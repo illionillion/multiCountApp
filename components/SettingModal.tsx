@@ -1,6 +1,5 @@
 import { FC, SetStateAction, useState } from "react";
 import {
-  Alert,
   Linking,
   Modal,
   Platform,
@@ -83,7 +82,7 @@ export const SettingModal: FC<SettingModalProps> = ({
             </View>
           </View>
           <View style={styles.settingItemTitle}>
-            <Text style={styles.settingItemText}>最大数</Text>
+            <Text style={styles.settingItemText}>カウンターの最大数</Text>
             <View style={styles.settingItemControls}>
               <TouchableOpacity onPress={setMinus}>
                 <Text style={styles.settingItemText}>-</Text>
@@ -107,8 +106,8 @@ export const SettingModal: FC<SettingModalProps> = ({
               )
             }
           >
-            <Text style={styles.settingItemText}>
-              利用規約・プライバシーポリシー
+            <Text style={styles.settingItemTextPolicy}>
+              利用規約・プライバシーポリシーを開く
             </Text>
           </TouchableOpacity>
         </View>
@@ -206,6 +205,11 @@ const styles = StyleSheet.create({
     color: "#fff",
     marginHorizontal: 10,
     fontSize: 20,
+  },
+  settingItemTextPolicy: {
+    color: "#fff",
+    marginHorizontal: 10,
+    fontSize: 18,
   },
   settingItemControls: {
     display: "flex",
