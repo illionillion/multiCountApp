@@ -5,9 +5,10 @@ import { FC } from "react";
 interface HeaderProps {
   modalVisible: boolean;
   setModalVisible: (flag: boolean) => void;
+  counterSum: number;
 }
 
-const Header: FC<HeaderProps> = ({ modalVisible, setModalVisible }) => {
+const Header: FC<HeaderProps> = ({ modalVisible, setModalVisible, counterSum }) => {
   const onPress = () => {
     // ここでnavigationで遷移
     setModalVisible(!modalVisible);
@@ -15,6 +16,10 @@ const Header: FC<HeaderProps> = ({ modalVisible, setModalVisible }) => {
 
   return (
     <View style={styles.headerContainer}>
+      <View style={styles.counterSum}>
+        <Text style={styles.counterSumTitle}>合計</Text>
+        <Text style={styles.counterSumText}>{counterSum}</Text>
+      </View>
       <Text style={styles.headerText}>カウントアプリ</Text>
       {/* @ts-ignore */}
       <AntDesign
@@ -49,6 +54,21 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 20,
     right: 20,
+  },
+  counterSumTitle: {
+    fontSize: 12,
+    color: "#fff",
+  },
+  counterSumText: {
+    fontSize: 16,
+    color: "#fff",
+  },
+  counterSum: {
+    justifyContent: "center",
+    alignItems:"center",
+    position: "absolute",
+    bottom: 20,
+    left: 20,
   },
 });
 export default Header;
