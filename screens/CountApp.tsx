@@ -11,14 +11,16 @@ export interface countStateProps {
   name: string;
 }
 
+const initialize_num = 1;
+const initialCounterMaxLength = 20;
 export default function CountApp() {
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState(initialize_num);
+  const [counterSum, setCounterSum] = useState<number>(0);
   const initialCounterState: countStateProps = {
     no: num,
     count: 0,
     name: "",
   };
-  const initialCounterMaxLength = 20;
   const [counterMaxLength, setCounterMaxLength] = useState(
     initialCounterMaxLength
   );
@@ -67,10 +69,10 @@ export default function CountApp() {
       counterList.map((counter) =>
         counter.no === num
           ? {
-              no: counter.no,
-              count: count,
-              name: counter.name,
-            }
+            no: counter.no,
+            count: count,
+            name: counter.name,
+          }
           : counter
       )
     );
@@ -79,10 +81,10 @@ export default function CountApp() {
     const newCounter = counterList.map((counter) =>
       counter.no === no
         ? {
-            no: counter.no,
-            count: counter.count + 1,
-            name: counter.name,
-          }
+          no: counter.no,
+          count: counter.count + 1,
+          name: counter.name,
+        }
         : counter
     );
     setCounterList(newCounter);
@@ -91,10 +93,10 @@ export default function CountApp() {
     const newCounter = counterList.map((counter) =>
       counter.no === no
         ? {
-            no: counter.no,
-            count: counter.count - 1,
-            name: counter.name,
-          }
+          no: counter.no,
+          count: counter.count - 1,
+          name: counter.name,
+        }
         : counter
     );
     setCounterList(newCounter);
@@ -103,10 +105,10 @@ export default function CountApp() {
     const newCounter = counterList.map((counter) =>
       counter.no === no
         ? {
-            no: counter.no,
-            count: counter.count,
-            name: name,
-          }
+          no: counter.no,
+          count: counter.count,
+          name: name,
+        }
         : counter
     );
     setCounterList(newCounter);
@@ -150,6 +152,9 @@ export default function CountApp() {
         return;
       }
       console.log("setData");
+      // 合計更新
+      const sum = counterList.reduce((prev, current) => prev + current.count, 0)
+      setCounterSum(sum)
       // データの保存
       await setData("CountList", JSON.stringify(counterList));
       await setData("CounterMaxLength", counterMaxLength.toString());
@@ -158,7 +163,7 @@ export default function CountApp() {
   }, [counterList, counterMaxLength, num]);
   return (
     <View style={styles.container}>
-      <Header modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <Header modalVisible={modalVisible} setModalVisible={setModalVisible} counterSum={counterSum} />
       <View style={styles.mainContainer}>
         <FlatList
           data={counterList}
