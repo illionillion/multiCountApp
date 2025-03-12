@@ -1,5 +1,6 @@
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { FC } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
 interface PlusButtonProps {
   Plus: () => void;
@@ -7,7 +8,7 @@ interface PlusButtonProps {
 const PlusButton: FC<PlusButtonProps> = ({ Plus }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={Plus}>
-      <Text style={styles.buttonText}>+</Text>
+      <FontAwesome name="plus" style={styles.buttonText} />
     </TouchableOpacity>
   );
 };
@@ -17,7 +18,7 @@ interface MinusButtonProps {
 const MinusButton: FC<MinusButtonProps> = ({ Minus }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={Minus}>
-      <Text style={styles.buttonText}>-</Text>
+      <FontAwesome name="minus" style={styles.buttonText} />
     </TouchableOpacity>
   );
 };
@@ -31,7 +32,7 @@ const DeleteButton: FC<DeleteButtonProps> = ({ no, Remove }) => {
   };
   return (
     <TouchableOpacity style={styles.button} onPress={DeletePress}>
-      <Text style={styles.buttonText}>削除</Text>
+      <FontAwesome name="trash" style={styles.buttonText} />
     </TouchableOpacity>
   );
 };
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#fff",
-    fontSize: 28,
+    fontSize: 24,
   },
 });
 
