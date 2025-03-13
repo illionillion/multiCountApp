@@ -1976,13 +1976,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@~0.66.13":
-  version "0.66.18"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.66.18.tgz#924fdbf413047e7ac2c18aead60142345814dede"
-  integrity sha512-a+xIlll1Wo4rhBPdoecH6VfvMgm8dcMScJgO5GSt+BB+7rMX/UOTWmfAV7BXx/x4okf2Tu6nSbEygnNYgNtp2A==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*":
   version "18.0.12"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.12.tgz#cdaa209d0a542b3fcf69cf31a03976ec4cdd8840"
@@ -3250,6 +3243,11 @@ expo-dev-menu@6.0.20:
   integrity sha512-+ha876lpGAsRB9lqT7WRtcSvxZg2CjXKWkCSAghToyx4Wti1u3M/y3onJ4oOvddtKuFfFX4IRmnZYI3xi/TDCQ==
   dependencies:
     expo-dev-menu-interface "1.9.3"
+
+expo-doctor@^1.12.7:
+  version "1.12.7"
+  resolved "https://registry.yarnpkg.com/expo-doctor/-/expo-doctor-1.12.7.tgz#104a8798da6b60f12b803f70fca8e1332e6c8a58"
+  integrity sha512-y1iYKMxGSEZS8LkK9GXQEK2VjR0L5A9C4CyDH3VS1eqfOTsnZKMZfgS1r+xEIcl37eb+t1ZWYQtCfEHjqhbKWw==
 
 expo-eas-client@~0.13.3:
   version "0.13.3"
@@ -5440,10 +5438,10 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
-react-native-google-mobile-ads@^9.1.1:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-google-mobile-ads/-/react-native-google-mobile-ads-9.1.1.tgz#f1ea02e1e3943db29600fac59514b67294597865"
-  integrity sha512-JCi0WwEgvtbgN0vYdNNpsUgLUi+HrOjh3xEPqP58kizWuAu4W009+1Df8qncCIMr+s4wEb/ziVzn1ORx5Vol2g==
+react-native-google-mobile-ads@^14.9.1:
+  version "14.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-google-mobile-ads/-/react-native-google-mobile-ads-14.9.1.tgz#2f102f6fbf1368f0513771e5a392d1c176e15eb3"
+  integrity sha512-dEwwEGO5hSjyXMl6RM+Kt65ut3v+38tIGPoScOQwuPdqA3SIGz0V7SxAMFKGm28CNTUM54syF20TbIbOZUSifQ==
   dependencies:
     "@iabtcf/core" "^1.5.3"
     use-deep-compare-effect "^1.8.1"

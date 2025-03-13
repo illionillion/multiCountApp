@@ -17,13 +17,14 @@
     "@types/react-native-vector-icons": "^6.4.18",
     "expo": "^52.0.38",
     "expo-dev-client": "~5.0.13",
+    "expo-doctor": "^1.12.7",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
     "expo-updates": "~0.27.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
-    "react-native-google-mobile-ads": "^9.1.1",
+    "react-native-google-mobile-ads": "^14.9.1",
     "react-native-gradle-plugin": "^0.71.19",
     "react-native-vector-icons": "^10.2.0",
     "react-native-web": "~0.19.13"
@@ -32,7 +33,6 @@
     "@babel/core": "^7.25.2",
     "@expo/vector-icons": "^14.0.2",
     "@types/react": "~18.3.12",
-    "@types/react-native": "~0.66.13",
     "typescript": "^5.3.3"
   },
   "private": true
