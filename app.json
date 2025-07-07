@@ -24,6 +24,8 @@
     "android": {
       "package": "com.hoge.myapp1234",
       "versionCode": 15,
+      "compileSdkVersion": 35,
+      "targetSdkVersion": 35,
       "adaptiveIcon": {
         "foregroundImage": "./assets/multiCountIcon.png",
         "backgroundColor": "#191919"
