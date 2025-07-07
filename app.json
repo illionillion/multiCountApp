@@ -23,7 +23,7 @@
     },
     "android": {
       "package": "com.hoge.myapp1234",
-      "versionCode": 13,
+      "versionCode": 15,
       "adaptiveIcon": {
         "foregroundImage": "./assets/multiCountIcon.png",
         "backgroundColor": "#191919"
